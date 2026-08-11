@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dil Tuta, Data Bachao - Digital Breakup Kit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #09090b;
+        }
+        .heart-glow {
+            filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #18181b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3f3f46;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-zinc-100 min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-rose-500 selection:text-white">
+
+    <!-- Custom Notification/Modal Box (No Alert) -->
+    <div id="customToast" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-zinc-900 border border-rose-500/30 text-rose-400 px-6 py-3 rounded-full shadow-2xl opacity-0 pointer-events-none transition-all duration-300 flex items-center space-x-2 text-sm font-medium">
+        <span id="toastIcon">💔</span>
+        <span id="toastMessage">Action Logged!</span>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto">
+        
+        <!-- SCREEN 1: THE WELCOME / BREAKUP METER -->
+        <div id="welcomeScreen" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 md:p-8 backdrop-blur-xl transition-all duration-500 transform translate-y-0 opacity-100">
+            <div class="text-center space-y-4">
+                <div class="inline-flex p-4 bg-rose-500/10 rounded-2xl text-rose-500 text-4xl mb-2 heart-glow animate-pulse">
+                    💔
+                </div>
+                <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-rose-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                    Dil Tuta, Data Bachao!
+                </h1>
+                <p class="text-zinc-400 text-sm max-w-sm mx-auto">
+                    Rishta khatam, par access nahi! Secure your digital life before your ex starts lurking or scrolling your accounts.
+                </p>
+            </div>
+
+            <!-- Severity / Drama Meter Setup -->
+            <div class="mt-8 space-y-4">
+                <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">
+                    Select Your Breakup Drama Level:
+                </label>
+                
+                <button onclick="selectSeverity('mutual', 'Mutual & Peaceful ☕', 'Chalo at least sensible breakup tha. Standard cleanup needed.')" 
+                        class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-200 flex items-center justify-between group">
+                    <div>
+                        <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Mutual Consent</h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">Peaceful exit, standard digital hygiene.</p>
+                    </div>
+                    <span class="text-xl">☕</span>
+                </button>
+
+                <button onclick="selectSeverity('ghosted', 'Ghosted / Blocked 🚫', 'Inhone toh reply hi band kar diya. Tighten your privacy controls ASAP.')" 
+                        class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-200 flex items-center justify-between group">
+                    <div>
+                        <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Ghosted / Suddenly Blocked</h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">High risk of revenge login or snooping.</p>
+                    </div>
+                    <span class="text-xl">🚫</span>
+                </button>
+
+                <button onclick="selectSeverity('dhoka', 'Toxic / Dhoka Hua Hai 💥', 'Kataa hai boss! Enable Full Arijit Singh Lockdown Mode immediately!')" 
+                        class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-rose-900/50 hover:bg-rose-950/10 rounded-xl transition-all duration-200 flex items-center justify-between group">
+                    <div>
+                        <h3 class="font-bold text-sm text-rose-400 group-hover:text-rose-300">Dhoka / Toxic Split</h3>
+                        <p class="text-xs text-zinc-500 mt-0.5">Maximum security mode. Change everything.</p>
+                    </div>
+                    <span class="text-xl animate-bounce">💥</span>
+                </button>
+            </div>
+
+            <div class="mt-8 text-center">
+                <button id="startBtn" disabled onclick="goToDashboard()" 
+                        class="w-full py-4 bg-zinc-800 text-zinc-500 font-bold rounded-xl cursor-not-allowed transition-all duration-300 focus:outline-none">
+                    Select a Level to Start Cleanup
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: ACTIVE SECURE DASHBOARD -->
+        <div id="dashboardScreen" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-3xl p-5 md:p-6 backdrop-blur-xl hidden opacity-0 transition-all duration-500 transform translate-y-4">
+            
+            <!-- Header Status -->
+            <div class="flex items-center justify-between border-b border-zinc-800 pb-4 mb-4">
+                <div>
+                    <span id="displayBadge" class="inline-block text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-rose-500/10 text-rose-400 rounded-md border border-rose-500/20 mb-1">
+                        Level
+                    </span>
+                    <h2 class="text-lg font-bold text-zinc-100 flex items-center">
+                        Digital Account Decoupler
+                    </h2>
+                </div>
+                <div class="text-right">
+                    <span id="progressText" class="text-xl font-extrabold text-rose-500">0%</span>
+                    <p class="text-[10px] text-zinc-500 font-medium">Data Secured</p>
+                </div>
+            </div>
+
+            <!-- Dynamic Live Progress Bar -->
+            <div class="w-full bg-zinc-800 h-2 rounded-full mb-6 overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 h-full w-0 transition-all duration-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]"></div>
+            </div>
+
+            <!-- Context Dialogue Box -->
+            <div id="statusQuote" class="p-3 bg-zinc-900/80 border border-zinc-800/80 rounded-xl mb-6 text-xs text-zinc-400 italic text-center flex items-center justify-center space-x-2">
+                <span>⚡</span> <span id="quoteText">Arijit Singh playlist status: Active.</span>
+            </div>
+
+            <!-- CATEGORIZED CHECKLIST -->
+            <div class="space-y-6 max-h-[380px] overflow-y-auto pr-1 custom-scrollbar">
+                
+                <!-- CATEGORY 1: OTT & STREAMING -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
+                        <span>🎬</span> <span>Phase 1: The Shared Entertainment Cutoff</span>
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task1" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task1" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Boot them off Netflix & Prime Video</span>
+                                <span class="block text-zinc-500 mt-0.5">Go to Account -> Sign Out of All Devices. Then change password.</span>
+                            </label>
+                        </div>
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task2" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task2" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Disconnect Spotify / YT Music Duet</span>
+                                <span class="block text-zinc-500 mt-0.5">Stop blending playlists. Remove them from any family plan managers.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 2: LOCATION & TRACKING -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
+                        <span>📍</span> <span>Phase 2: Stalker-Proof Your Location</span>
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task3" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task3" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Revoke Google Maps Real-time Sharing</span>
+                                <span class="block text-zinc-500 mt-0.5">Open Google Maps -> Location Sharing -> Delete their name immediately.</span>
+                            </label>
+                        </div>
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task4" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task4" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Turn off Find My / Device Trackers</span>
+                                <span class="block text-zinc-500 mt-0.5">Ensure no shared logins have real-time apple/android hardware access.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 3: CLOUD & PHOTOS -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
+                        <span>☁️</span> <span>Phase 3: Clear Shared Memories & Drives</span>
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task5" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task5" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Unshare Google Drive Folders</span>
+                                <span class="block text-zinc-500 mt-0.5">Check ownership status of mutual sheets, assignment folders, or media backups.</span>
+                            </label>
+                        </div>
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task6" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task6" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Disable Google Photos Partner Sharing</span>
+                                <span class="block text-zinc-500 mt-0.5">Settings -> Partner Sharing -> Remove Partner to stop auto-syncing gallery.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 4: FINANCES & LOGINS -->
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
+                        <span>💳</span> <span>Phase 4: Financial Independence</span>
+                    </h4>
+                    <div class="space-y-2">
+                        <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
+                            <input type="checkbox" id="task7" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
+                            <label for="task7" class="ml-3 text-xs w-full cursor-pointer">
+                                <span class="block font-semibold text-zinc-200">Settle Splitwise & Linked UPI Autopays</span>
+                                <span class="block text-zinc-500 mt-0.5">Clear old dues and check if any recurring subscription pulls from your wallet.</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Complete Action Panel -->
+            <div class="mt-6 pt-4 border-t border-zinc-800 text-center">
+                <button id="completeBtn" disabled onclick="finishCleanup()" 
+                        class="w-full py-3.5 bg-zinc-800 text-zinc-500 font-bold rounded-xl cursor-not-allowed transition-all duration-300">
+                    Secure 100% Data To Generate Freedom Card
+                </button>
+            </div>
+        </div>
+
+        <!-- SCREEN 3: SUCCESS / FREEDOM CARD -->
+        <div id="successScreen" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 md:p-8 backdrop-blur-xl hidden opacity-0 transition-all duration-500 transform translate-y-4 text-center space-y-6">
+            <div class="inline-flex p-4 bg-emerald-500/10 rounded-full text-emerald-400 text-3xl mx-auto shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                🛡️
+            </div>
+            
+            <div class="space-y-2">
+                <h2 class="text-2xl font-extrabold tracking-tight text-emerald-400">Digital Azadi Attained!</h2>
+                <p class="text-zinc-400 text-sm max-w-sm mx-auto">
+                    Aapka digital data poori tarah se secure hai. Ex-access eliminated successfully.
+                </p>
+            </div>
+
+            <!-- The Viral Generated Certificate Design -->
+            <div id="certificateCard" class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
+                <!-- Watermark Background icon -->
+                <div class="absolute -right-6 -bottom-6 text-9xl text-zinc-900/30 select-none pointer-events-none font-bold">🕊️</div>
+                
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-[9px] font-bold tracking-widest text-rose-500 uppercase">OFFICIAL COMPLIANCE</span>
+                        <h3 class="text-base font-extrabold text-zinc-200 mt-0.5">DATA FREEDOM CERTIFICATE</h3>
+                    </div>
+                    <span class="text-xs font-mono text-zinc-600" id="certId">#AZADI-9832</span>
+                </div>
+                
+                <div class="mt-6 space-y-3 border-t border-zinc-800/80 pt-4">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-zinc-500">Security Clearance:</span>
+                        <span class="font-semibold text-zinc-300">100% Clean / Unreachable</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-zinc-500">Breakup Severity Mode:</span>
+                        <span class="font-semibold text-zinc-300" id="certSeverity">Toxic Mode</span>
+                    </div>
+                    <div class="flex justify-between text-xs">
+                        <span class="text-zinc-500">Arijit Singh Protection:</span>
+                        <span class="font-semibold text-emerald-400">Fully Enabled ✔</span>
+                    </div>
+                </div>
+
+                <p class="mt-6 text-[10px] text-zinc-500 italic text-center border-t border-zinc-950 pt-3">
+                    "Thappad se darr nahi lagta saab, data leak se lagta hai."
+                </p>
+            </div>
+
+            <button onclick="copyShareLink()" class="w-full py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-xl shadow-lg shadow-rose-600/20 transition-all duration-200 flex items-center justify-center space-x-2">
+                <span>📋</span> <span>Copy Status Text to Share</span>
+            </button>
+            
+            <button onclick="resetApp()" class="text-xs text-zinc-500 hover:text-zinc-400 underline block mx-auto">
+                Start Over / Reset System
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-4 text-center border-t border-zinc-900 bg-black/20">
+        <p class="text-[10px] tracking-wide text-zinc-600 font-semibold uppercase">
+            Made with 💔 for Better Digital Privacy
+        </p>
+    </footer>
+
+    <!-- INTERACTIVE APP SCRIPT -->
+    <script>
+        let selectedType = '';
+        let totalTasks = 7;
+
+        const dynamicQuotes = [
+            "Tumhara access gaya, ab sirf memories bachi hain.",
+            "Password changed! Background me 'Channa Mereya' baj raha hai.",
+            "Location revoke ho gayi, ab stalk karna mushkil hai.",
+            "Google Drive cleaned. No more matching outfits archives.",
+            "Splitwise settled. Paisa safe, data bhi safe!",
+            "Digital break-up complete. Access denied permanently."
+        ];
+
+        function showToast(msg, icon = '💔') {
+            const toast = document.getElementById('customToast');
+            document.getElementById('toastMessage').innerText = msg;
+            document.getElementById('toastIcon').innerText = icon;
+            
+            toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+            toast.classList.add('opacity-100', 'translate-y-0');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
+            }, 2500);
+        }
+
+        function selectSeverity(type, label, hint) {
+            selectedType = label;
+            document.getElementById('certSeverity').innerText = label;
+            
+            // Highlight active setup button logic if expanded
+            const btn = document.getElementById('startBtn');
+            btn.disabled = false;
+            btn.classList.remove('bg-zinc-800', 'text-zinc-500', 'cursor-not-allowed');
+            btn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
+            btn.innerText = `Lockdown into ${label}`;
+            
+            // Update contextual preview block text
+            document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Ariji Singh Lockdown' : type.toUpperCase();
+            
+            showToast(`${label} config selected!`, '⚡');
+        }
+
+        function goToDashboard() {
+            const welcome = document.getElementById('welcomeScreen');
+            const dash = document.getElementById('dashboardScreen');
+            
+            welcome.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                welcome.classList.add('hidden');
+                dash.classList.remove('hidden');
+                setTimeout(() => {
+                    dash.classList.remove('opacity-0', 'translate-y-4');
+                    dash.classList.add('opacity-100', 'translate-y-0');
+                }, 50);
+            }, 300);
+        }
+
+        function updateProgress() {
+            let checkedCount = 0;
+            for(let i = 1; i <= totalTasks; i++) {
+                if(document.getElementById(`task${i}`).checked) {
+                    checkedCount++;
+                }
+            }
+
+            const percentage = Math.round((checkedCount / totalTasks) * 100);
+            
+            // Visual element tweaks
+            document.getElementById('progressText').innerText = `${percentage}%`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+            
+            // Dynamically rotate funny Bollywood context items
+            if(checkedCount > 0 && checkedCount <= totalTasks) {
+                const randomQuote = dynamicQuotes[Math.min(checkedCount - 1, dynamicQuotes.length - 1)];
+                document.getElementById('quoteText').innerText = randomQuote;
+            }
+
+            const completeBtn = document.getElementById('completeBtn');
+            if(percentage === 100) {
+                completeBtn.disabled = false;
+                completeBtn.classList.remove('bg-zinc-800', 'text-zinc-500', 'cursor-not-allowed');
+                completeBtn.classList.add('bg-gradient-to-r', 'from-emerald-600', 'to-teal-600', 'text-white', 'hover:opacity-95', 'shadow-lg');
+                completeBtn.innerText = "Generate My Freedom Card! 🎉";
+                showToast("Perfect! All data secure gates locked down.", '🛡️');
+            } else {
+                completeBtn.disabled = true;
+                completeBtn.classList.add('bg-zinc-800', 'text-zinc-500', 'cursor-not-allowed');
+                completeBtn.classList.remove('bg-gradient-to-r', 'from-emerald-600', 'to-teal-600', 'text-white');
+                completeBtn.innerText = "Secure 100% Data To Generate Freedom Card";
+            }
+        }
+
+        function finishCleanup() {
+            const dash = document.getElementById('dashboardScreen');
+            const success = document.getElementById('successScreen');
+            
+            // Random unique certificate ID layout creation
+            document.getElementById('certId').innerText = `#AZADI-${Math.floor(1000 + Math.random() * 9000)}`;
+
+            dash.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                dash.classList.add('hidden');
+                success.classList.remove('hidden');
+                setTimeout(() => {
+                    success.classList.remove('opacity-0', 'translate-y-4');
+                    success.classList.add('opacity-100', 'translate-y-0');
+                }, 50);
+            }, 300);
+        }
+
+        function copyShareLink() {
+            const textToCopy = `💔 Just achieved 100% Digital Azadi using the 'Dil Tuta, Data Bachao' Toolkit! Ex-access successfully revoked under ${selectedType || 'Strict'} Mode. Stop your ex from snooping around your Netflix/Drive today! #CyberSecurity`;
+            
+            // Safe cross-platform fallback for iFrame sandboxing environments
+            const el = document.createElement('textarea');
+            el.value = textToCopy;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+
+            showToast("Copied status card text!", '✅');
+        }
+
+        function resetApp() {
+            // Uncheck everything securely
+            for(let i = 1; i <= totalTasks; i++) {
+                document.getElementById(`task${i}`).checked = false;
+            }
+            selectedType = '';
+            
+            // Reset main status variables
+            document.getElementById('progressText').innerText = '0%';
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('quoteText').innerText = "Arijit Singh playlist status: Active.";
+            
+            const startBtn = document.getElementById('startBtn');
+            startBtn.disabled = true;
+            startBtn.className = "w-full py-4 bg-zinc-800 text-zinc-500 font-bold rounded-xl cursor-not-allowed transition-all duration-300 focus:outline-none";
+            startBtn.innerText = "Select a Level to Start Cleanup";
+
+            // Screen reset toggles
+            document.getElementById('successScreen').classList.add('hidden', 'opacity-0');
+            const welcome = document.getElementById('welcomeScreen');
+            welcome.classList.remove('hidden');
+            setTimeout(() => {
+                welcome.classList.remove('opacity-0', 'translate-y-4');
+                welcome.classList.add('opacity-100', 'translate-y-0');
+            }, 50);
+        }
+    </script>
+</body>
+</html>
