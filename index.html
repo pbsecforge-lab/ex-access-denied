@@ -1,3 +1,5 @@
+# Dil Tuta, Data Bachao Dashboard
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -17,6 +19,7 @@
             filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
         }
         .custom-scrollbar::-webkit-scrollbar {
+
             width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
@@ -36,6 +39,7 @@
         }
         .bar:nth-child(2) { animation-delay: 0.15s; }
         .bar:nth-child(3) { animation-delay: 0.3s; }
+
         .bar:nth-child(4) { animation-delay: 0.45s; }
         @keyframes bounce {
             from { height: 4px; }
@@ -55,6 +59,12 @@
         <span id="toastMessage">Action Logged!</span>
     </div>
 
+
+    <!-- Hidden YouTube Player Container (Avoids CORS issues & streams background audio perfectly) -->
+    <div class="absolute w-px h-px opacity-0 overflow-hidden pointer-events-none">
+        <div id="ytPlayer"></div>
+    </div>
+
     <!-- MAIN APP CONTAINER -->
     <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto">
         
@@ -69,6 +79,7 @@
                 </h1>
                 <p class="text-zinc-400 text-sm max-w-sm mx-auto">
                     Rishta khatam, par access nahi! Secure your digital life before your ex starts lurking or scrolling your accounts.
+
                 </p>
             </div>
 
@@ -88,6 +99,7 @@
                 </button>
 
                 <button onclick="selectSeverity('ghosted', 'Ghosted / Blocked 🚫', 'Inhone toh reply hi band kar diya. Tighten your privacy controls ASAP.')" 
+
                         class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-200 flex items-center justify-between group">
                     <div>
                         <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Ghosted / Suddenly Blocked</h3>
@@ -107,6 +119,7 @@
             </div>
 
             <div class="mt-8 text-center">
+
                 <button id="startBtn" disabled onclick="goToDashboard()" 
                         class="w-full py-4 bg-zinc-800 text-zinc-500 font-bold rounded-xl cursor-not-allowed transition-all duration-300 focus:outline-none">
                     Select a Level to Start Cleanup
@@ -126,6 +139,7 @@
                     <h2 class="text-lg font-bold text-zinc-100 flex items-center">
                         Digital Account Decoupler
                     </h2>
+
                 </div>
                 <div class="text-right">
                     <span id="progressText" class="text-xl font-extrabold text-rose-500">0%</span>
@@ -145,6 +159,7 @@
                     <div id="soundwave" class="flex items-end space-x-0.5 h-4 w-5 paused-bars">
                         <span class="bar"></span>
                         <span class="bar"></span>
+
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </div>
@@ -154,7 +169,7 @@
                     </div>
                 </div>
                 <button onclick="toggleMusic()" id="audioToggleBtn" class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg text-zinc-300 font-medium transition-all active:scale-95">
-                    Play
+                    Pause
                 </button>
             </div>
 
@@ -164,6 +179,7 @@
             </div>
 
             <!-- CATEGORIZED CHECKLIST -->
+
             <div class="space-y-6 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar">
                 
                 <!-- CATEGORY 1: OTT & STREAMING -->
@@ -183,6 +199,7 @@
                             <input type="checkbox" id="task2" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task2" class="ml-3 text-xs w-full cursor-pointer">
                                 <span class="block font-semibold text-zinc-200">Disconnect Spotify / YT Music Duet</span>
+
                                 <span class="block text-zinc-500 mt-0.5">Stop blending playlists. Remove them from any family plan managers.</span>
                             </label>
                         </div>
@@ -202,6 +219,7 @@
                                 <span class="block text-zinc-500 mt-0.5">Open Google Maps -> Location Sharing -> Delete their name immediately.</span>
                             </label>
                         </div>
+
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task4" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task4" class="ml-3 text-xs w-full cursor-pointer">
@@ -221,6 +239,7 @@
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task5" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task5" class="ml-3 text-xs w-full cursor-pointer">
+
                                 <span class="block font-semibold text-zinc-200">Unshare Google Drive Folders</span>
                                 <span class="block text-zinc-500 mt-0.5">Check ownership status of mutual sheets, assignment folders, or media backups.</span>
                             </label>
@@ -240,6 +259,7 @@
                     <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
                         <span>💳</span> <span>Phase 4: Financial Independence</span>
                     </h4>
+
                     <div class="space-y-2">
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task7" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
@@ -253,12 +273,13 @@
 
             </div>
 
-            <!-- Complete Action Panel -->
+            <!-- Complete Action Panel (Fully flexible, works at any percentage status) -->
             <div class="mt-6 pt-4 border-t border-zinc-800 text-center">
                 <button id="completeBtn" onclick="finishCleanup()" 
                         class="w-full py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold rounded-xl hover:opacity-95 shadow-lg transition-all duration-300">
                     Generate My Freedom Card (0% Secured) 🎉
                 </button>
+
             </div>
         </div>
 
@@ -278,6 +299,7 @@
             <!-- The Viral Generated Certificate Design -->
             <div id="certificateCard" class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
                 <!-- Watermark Background icon -->
+
                 <div class="absolute -right-6 -bottom-6 text-9xl text-zinc-900/30 select-none pointer-events-none font-bold">🕊️</div>
                 
                 <div class="flex justify-between items-start">
@@ -297,6 +319,7 @@
                         <span class="text-zinc-500">Breakup Severity Mode:</span>
                         <span class="font-semibold text-zinc-300" id="certSeverity">Toxic Mode</span>
                     </div>
+
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500">Arijit Singh Protection:</span>
                         <span class="font-semibold text-emerald-400">Fully Enabled ✔</span>
@@ -317,6 +340,7 @@
             </button>
         </div>
 
+
     </main>
 
     <!-- FOOTER -->
@@ -328,27 +352,26 @@
 
     <!-- INTERACTIVE APP SCRIPT -->
     <script>
-        let selectedType = '';
-        let totalTasks = 7;
-        let severityMode = '';
-        let globalPercentage = 0;
+        // Define all global states explicitly to ensure strict scoping clearance
+        window.selectedType = '';
+        window.totalTasks = 7;
+        window.severityMode = '';
+        window.globalPercentage = 0;
+        window.player = null;
+        window.isPlaying = false;
 
-        // Web Audio API State Configuration
-        let audioCtx = null;
-        let isPlaying = false;
-        let synthInterval = null;
 
-        // Native Synth Musical Frequency Scales (Sad minor lofi chords progression)
-        const melodies = {
-            mutual: [261.63, 329.63, 392.00, 440.00], // C4, E4, G4, A4 (Calm, Bittersweet)
-            ghosted: [220.00, 261.63, 293.66, 349.23], // A3, C4, D4, F4 (Sad Minor Melancholy)
-            dhoka: [196.00, 233.08, 220.00, 174.61]   // G3, Bb3, A3, F3 (Dramatic Aggressive Melodrama)
+        // Video track mappings using whitelisted asset IDs
+        const videoTracks = {
+            mutual: 'TxT0KZ-EdLs',  // Hamari Adhuri Kahani
+            ghosted: 'dxcXdtZh_QA', // Channa Mereya
+            dhoka: '6W9pJwFLgCI'    // Pachtaoge
         };
 
         const trackNames = {
-            mutual: "📻 Radio Synth: Mutual Healing (Lo-Fi Calm Wave)",
-            ghosted: "📻 Radio Synth: Ghosted Silence (Lo-Fi Sad Minor)",
-            dhoka: "📻 Radio Synth: Full Toxic Heartbreak (Sawtooth Rage Mix)"
+            mutual: "🎵 Hamari Adhuri Kahani - Arijit Singh",
+            ghosted: "🎵 Channa Mereya - Arijit Singh",
+            dhoka: "🎵 Pachtaoge - Arijit Singh"
         };
 
         const dynamicQuotes = [
@@ -357,56 +380,37 @@
             "Location revoke ho gayi, ab stalk karna mushkil hai.",
             "Google Drive cleaned. No more matching outfits archives.",
             "Splitwise settled. Paisa safe, data bhi safe!",
+
             "Digital break-up complete. Access denied permanently."
         ];
 
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Global YouTube Player Callback Handler
+        window.onYouTubeIframeAPIReady = function() {
+            try {
+                window.player = new YT.Player('ytPlayer', {
+                    height: '1',
+                    width: '1',
+                    videoId: 'dxcXdtZh_QA',
+                    playerVars: {
+                        'playsinline': 1,
+                        'controls': 0,
+                        'disablekb': 1,
+                        'rel': 0
+                    },
+                    events: {
+                        'onReady': function() {
+                            console.log("Audio Engine Connected.");
+
+                        }
+                    }
+                });
+            } catch (e) {
+                console.error("YT Player creation failure:", e);
             }
-        }
+        };
 
-        function playSynthMelody(type) {
-            initAudio();
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-            
-            if (synthInterval) clearInterval(synthInterval);
-            
-            let notes = melodies[type] || melodies.mutual;
-            let step = 0;
-            
-            isPlaying = true;
-            document.getElementById('soundwave').classList.remove('paused-bars');
-            document.getElementById('audioToggleBtn').innerText = "Pause";
-
-            // Infinite sequence looping algorithm for native sound wave mapping
-            synthInterval = setInterval(() => {
-                if (!isPlaying) return;
-                
-                let osc = audioCtx.createOscillator();
-                let gainNode = audioCtx.createGain();
-                
-                // Sawtooth for extreme anger, triangle for standard smooth lofi wave
-                osc.type = type === 'dhoka' ? 'sawtooth' : 'triangle'; 
-                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
-                
-                // Volume controller envelope to prevent harsh clip crackling noises
-                gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
-                
-                osc.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.55);
-                
-                step++;
-            }, 550);
-        }
-
-        function showToast(msg, icon = '💔') {
+        window.showToast = function(msg, icon) {
+            if (!icon) icon = '💔';
             const toast = document.getElementById('customToast');
             document.getElementById('toastMessage').innerText = msg;
             document.getElementById('toastIcon').innerText = icon;
@@ -414,122 +418,138 @@
             toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
             toast.classList.add('opacity-100', 'translate-y-0');
             
-            setTimeout(() => {
+            setTimeout(function() {
                 toast.classList.remove('opacity-100', 'translate-y-0');
+
                 toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
             }, 2500);
-        }
+        };
 
-        function selectSeverity(type, label, hint) {
-            selectedType = label;
-            severityMode = type;
+        window.selectSeverity = function(type, label, hint) {
+            window.selectedType = label;
+            window.severityMode = type;
             document.getElementById('certSeverity').innerText = label;
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = false;
             startBtn.classList.remove('bg-zinc-800', 'text-zinc-500', 'cursor-not-allowed');
             startBtn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
-            startBtn.innerText = `Lockdown into ${label}`;
+            startBtn.innerText = 'Lockdown into ' + label;
             
             document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Arijit Singh Lockdown' : type.toUpperCase();
             document.getElementById('trackName').innerText = trackNames[type];
 
-            showToast(`${label} config selected!`, '⚡');
-        }
+            if (window.player && typeof window.player.cueVideoById === 'function') {
 
-        function goToDashboard() {
+                window.player.cueVideoById({ videoId: videoTracks[type] });
+            }
+
+            window.showToast(label + ' config selected!', '⚡');
+        };
+
+        window.goToDashboard = function() {
             const welcome = document.getElementById('welcomeScreen');
             const dash = document.getElementById('dashboardScreen');
             
             welcome.classList.add('opacity-0', 'translate-y-4');
-            setTimeout(() => {
+            setTimeout(function() {
                 welcome.classList.add('hidden');
                 dash.classList.remove('hidden');
-                setTimeout(() => {
+                setTimeout(function() {
                     dash.classList.remove('opacity-0', 'translate-y-4');
                     dash.classList.add('opacity-100', 'translate-y-0');
                     
-                    updateProgress();
+                    window.updateProgress();
 
-                    // Instantly trigger hardware synthesis safe from CORS limits
-                    if (severityMode) {
-                        playSynthMelody(severityMode);
+
+                    if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
+                        window.player.loadVideoById({ videoId: videoTracks[window.severityMode] });
+                        window.player.playVideo();
+                        window.isPlaying = true;
+                        document.getElementById('soundwave').classList.remove('paused-bars');
+                        document.getElementById('audioToggleBtn').innerText = "Pause";
                     }
                 }, 50);
             }, 300);
-        }
+        };
 
-        function toggleMusic() {
+        window.toggleMusic = function() {
             const soundwave = document.getElementById('soundwave');
             const toggleBtn = document.getElementById('audioToggleBtn');
 
-            if (!severityMode) return;
+            if (!window.player || typeof window.player.playVideo !== 'function' || !window.severityMode) return;
 
-            if (!isPlaying) {
-                isPlaying = true;
+            if (!window.isPlaying) {
+                window.player.playVideo();
+
+                window.isPlaying = true;
                 soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
-                showToast("Radio unmuted!", "🎵");
+                window.showToast("Bollywood track resumed!", "🎵");
             } else {
-                isPlaying = false;
+                window.player.pauseVideo();
+                window.isPlaying = false;
                 soundwave.classList.add('paused-bars');
                 toggleBtn.innerText = "Play";
-                showToast("Radio paused!", "🤫");
+                window.showToast("Track paused!", "🤫");
             }
-        }
+        };
 
-        function updateProgress() {
+        window.updateProgress = function() {
             let checkedCount = 0;
-            for(let i = 1; i <= totalTasks; i++) {
-                if(document.getElementById(`task${i}`).checked) {
+            for(let i = 1; i <= window.totalTasks; i++) {
+                if(document.getElementById('task' + i).checked) {
                     checkedCount++;
                 }
+
             }
 
-            globalPercentage = Math.round((checkedCount / totalTasks) * 100);
+            window.globalPercentage = Math.round((checkedCount / window.totalTasks) * 100);
             
-            document.getElementById('progressText').innerText = `${globalPercentage}%`;
-            document.getElementById('progressBar').style.width = `${globalPercentage}%`;
+            document.getElementById('progressText').innerText = window.globalPercentage + '%';
+            document.getElementById('progressBar').style.width = window.globalPercentage + '%';
             
-            if(checkedCount > 0 && checkedCount <= totalTasks) {
+            if(checkedCount > 0 && checkedCount <= window.totalTasks) {
                 const randomQuote = dynamicQuotes[Math.min(checkedCount - 1, dynamicQuotes.length - 1)];
                 document.getElementById('quoteText').innerText = randomQuote;
             }
 
             const completeBtn = document.getElementById('completeBtn');
-            completeBtn.innerText = `Generate My Freedom Card (${globalPercentage}% Secured) 🎉`;
-        }
+            completeBtn.innerText = 'Generate My Freedom Card (' + window.globalPercentage + '% Secured) 🎉';
+        };
 
-        function finishCleanup() {
+        window.finishCleanup = function() {
             const dash = document.getElementById('dashboardScreen');
             const success = document.getElementById('successScreen');
+
             
-            document.getElementById('certId').innerText = `#AZADI-${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('certId').innerText = '#AZADI-' + Math.floor(1000 + Math.random() * 9000);
             
             const certText = document.getElementById('certProgressText');
-            certText.innerText = `${globalPercentage}% Clean & Secured`;
+            certText.innerText = window.globalPercentage + '% Clean & Secured';
             
-            if(globalPercentage === 100) {
+            if(window.globalPercentage === 100) {
                 certText.className = "font-semibold text-emerald-400";
-            } else if(globalPercentage > 40) {
+            } else if(window.globalPercentage > 40) {
                 certText.className = "font-semibold text-pink-400";
             } else {
                 certText.className = "font-semibold text-rose-500";
             }
 
             dash.classList.add('opacity-0', 'translate-y-4');
-            setTimeout(() => {
+            setTimeout(function() {
                 dash.classList.add('hidden');
                 success.classList.remove('hidden');
-                setTimeout(() => {
+                setTimeout(function() {
+
                     success.classList.remove('opacity-0', 'translate-y-4');
                     success.classList.add('opacity-100', 'translate-y-0');
                 }, 50);
             }, 300);
-        }
+        };
 
-        function copyShareLink() {
-            const textToCopy = `💔 Just achieved ${globalPercentage}% Digital Azadi using the 'Dil Tuta, Data Bachao' Toolkit! Ex-access status verified under ${selectedType || 'Strict'} Mode. Stop your ex from snooping around your privacy grids! #CyberSecurity`;
+        window.copyShareLink = function() {
+            const textToCopy = '💔 Just achieved ' + window.globalPercentage + '% Digital Azadi using the \'Dil Tuta, Data Bachao\' Toolkit! Ex-access status verified under ' + (window.selectedType || 'Strict') + ' Mode. Stop your ex from snooping around your privacy grids! #CyberSecurity';
             
             const el = document.createElement('textarea');
             el.value = textToCopy;
@@ -538,22 +558,22 @@
             document.execCommand('copy');
             document.body.removeChild(el);
 
-            showToast("Copied status card text!", '✅');
-        }
+            window.showToast("Copied status card text!", '✅');
+        };
 
-        function resetApp() {
-            if (synthInterval) clearInterval(synthInterval);
-            isPlaying = false;
-            if (audioCtx) {
-                audioCtx.close().then(() => { audioCtx = null; });
-            }
 
-            for(let i = 1; i <= totalTasks; i++) {
-                document.getElementById(`task${i}`).checked = false;
+        window.resetApp = function() {
+            if (window.player && typeof window.player.pauseVideo === 'function') {
+                window.player.pauseVideo();
             }
-            selectedType = '';
-            severityMode = '';
-            globalPercentage = 0;
+            window.isPlaying = false;
+
+            for(let i = 1; i <= window.totalTasks; i++) {
+                document.getElementById('task' + i).checked = false;
+            }
+            window.selectedType = '';
+            window.severityMode = '';
+            window.globalPercentage = 0;
             
             document.getElementById('progressText').innerText = '0%';
             document.getElementById('progressBar').style.width = '0%';
@@ -561,6 +581,7 @@
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
+
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = true;
@@ -570,11 +591,22 @@
             document.getElementById('successScreen').classList.add('hidden', 'opacity-0');
             const welcome = document.getElementById('welcomeScreen');
             welcome.classList.remove('hidden');
-            setTimeout(() => {
+            setTimeout(function() {
                 welcome.classList.remove('opacity-0', 'translate-y-4');
                 welcome.classList.add('opacity-100', 'translate-y-0');
             }, 50);
-        }
+        };
+
+        // Asynchronously register the official YouTube Player Iframe script layer safely avoiding race-conditions
+        (function() {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+
+            const firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        })();
     </script>
 </body>
 </html>
+
+
