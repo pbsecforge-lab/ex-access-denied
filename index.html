@@ -60,11 +60,6 @@
     </div>
 
 
-    <!-- Hidden YouTube Player Container (1x1 px transparent layout to fully load iframe pipelines) -->
-    <div class="absolute top-0 left-0 w-px h-px opacity-0 overflow-hidden pointer-events-none z-0">
-        <div id="ytPlayer"></div>
-    </div>
-
     <!-- MAIN APP CONTAINER -->
     <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto relative z-10">
         
@@ -79,12 +74,12 @@
                 </h1>
                 <p class="text-zinc-400 text-sm max-w-sm mx-auto">
                     Rishta khatam, par access nahi! Secure your digital life before your ex starts lurking or scrolling your accounts.
-
                 </p>
             </div>
 
             <!-- Severity / Drama Meter Setup -->
             <div class="mt-8 space-y-4">
+
                 <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">
                     Select Your Breakup Drama Level:
                 </label>
@@ -99,12 +94,12 @@
                 </button>
 
                 <button onclick="selectSeverity('ghosted', 'Ghosted / Blocked 🚫', 'Inhone toh reply hi band kar diya. Tighten your privacy controls ASAP.')" 
-
                         class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-xl transition-all duration-200 flex items-center justify-between group">
                     <div>
                         <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Ghosted / Suddenly Blocked</h3>
                         <p class="text-xs text-zinc-500 mt-0.5">High risk of revenge login or snooping.</p>
                     </div>
+
                     <span class="text-xl">🚫</span>
                 </button>
 
@@ -119,12 +114,12 @@
             </div>
 
             <div class="mt-8 text-center">
-
                 <button id="startBtn" disabled onclick="goToDashboard()" 
                         class="w-full py-4 bg-zinc-800 text-zinc-500 font-bold rounded-xl cursor-not-allowed transition-all duration-300 focus:outline-none">
                     Select a Level to Start Cleanup
                 </button>
             </div>
+
         </div>
 
         <!-- SCREEN 2: ACTIVE SECURE DASHBOARD -->
@@ -139,12 +134,12 @@
                     <h2 class="text-lg font-bold text-zinc-100 flex items-center">
                         Digital Account Decoupler
                     </h2>
-
                 </div>
                 <div class="text-right">
                     <span id="progressText" class="text-xl font-extrabold text-rose-500">0%</span>
                     <p class="text-[10px] text-zinc-500 font-medium">Data Secured</p>
                 </div>
+
             </div>
 
             <!-- Dynamic Live Progress Bar -->
@@ -152,23 +147,29 @@
                 <div id="progressBar" class="bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 h-full w-0 transition-all duration-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]"></div>
             </div>
 
-            <!-- DYNAMIC AUDIO CONTROLLER WIDGET -->
+            <!-- DYNAMIC AUDIO CONTROLLER WIDGET (With Visible Mini Embed Player) -->
             <div id="audioWidget" class="flex items-center justify-between p-3 bg-zinc-950/60 border border-zinc-800/60 rounded-xl mb-4 text-xs">
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-3 min-w-0">
                     <!-- Soundwave Animation Bars -->
-                    <div id="soundwave" class="flex items-end space-x-0.5 h-4 w-5 paused-bars">
+                    <div id="soundwave" class="flex items-end space-x-0.5 h-4 w-4 paused-bars flex-shrink-0">
                         <span class="bar"></span>
                         <span class="bar"></span>
-
                         <span class="bar"></span>
                         <span class="bar"></span>
                     </div>
-                    <div>
-                        <p class="font-semibold text-zinc-300 uppercase tracking-wide text-[10px]">Current Vibe Player</p>
-                        <p id="trackName" class="text-zinc-500 text-[11px] truncate max-w-[180px]">Radio Tuning...</p>
+                    
+                    <!-- Small Visible Iframe Container (Bypasses all mobile/desktop browser background volume block policies) -->
+
+                    <div class="w-20 h-12 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden flex-shrink-0 relative">
+                        <div id="ytPlayer" class="w-full h-full scale-110 object-cover"></div>
+                    </div>
+
+                    <div class="min-w-0">
+                        <p class="font-semibold text-zinc-300 uppercase tracking-wide text-[9px]">Current Vibe Player</p>
+                        <p id="trackName" class="text-zinc-500 text-[11px] truncate max-w-[130px]">Radio Tuning...</p>
                     </div>
                 </div>
-                <button onclick="toggleMusic()" id="audioToggleBtn" class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg text-zinc-300 font-medium transition-all active:scale-95">
+                <button onclick="toggleMusic()" id="audioToggleBtn" class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg text-zinc-300 font-medium transition-all active:scale-95 flex-shrink-0">
                     Pause
                 </button>
             </div>
@@ -178,8 +179,8 @@
                 <span>⚡</span> <span id="quoteText">Arijit Singh playlist status: Active.</span>
             </div>
 
-            <!-- CATEGORIZED CHECKLIST -->
 
+            <!-- CATEGORIZED CHECKLIST -->
             <div class="space-y-6 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar">
                 
                 <!-- CATEGORY 1: OTT & STREAMING -->
@@ -198,8 +199,8 @@
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task2" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task2" class="ml-3 text-xs w-full cursor-pointer">
-                                <span class="block font-semibold text-zinc-200">Disconnect Spotify / YT Music Duet</span>
 
+                                <span class="block font-semibold text-zinc-200">Disconnect Spotify / YT Music Duet</span>
                                 <span class="block text-zinc-500 mt-0.5">Stop blending playlists. Remove them from any family plan managers.</span>
                             </label>
                         </div>
@@ -218,8 +219,8 @@
                                 <span class="block font-semibold text-zinc-200">Revoke Google Maps Real-time Sharing</span>
                                 <span class="block text-zinc-500 mt-0.5">Open Google Maps -> Location Sharing -> Delete their name immediately.</span>
                             </label>
-                        </div>
 
+                        </div>
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task4" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task4" class="ml-3 text-xs w-full cursor-pointer">
@@ -238,8 +239,8 @@
                     <div class="space-y-2">
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task5" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
-                            <label for="task5" class="ml-3 text-xs w-full cursor-pointer">
 
+                            <label for="task5" class="ml-3 text-xs w-full cursor-pointer">
                                 <span class="block font-semibold text-zinc-200">Unshare Google Drive Folders</span>
                                 <span class="block text-zinc-500 mt-0.5">Check ownership status of mutual sheets, assignment folders, or media backups.</span>
                             </label>
@@ -258,8 +259,8 @@
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
                         <span>💳</span> <span>Phase 4: Financial Independence</span>
-                    </h4>
 
+                    </h4>
                     <div class="space-y-2">
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task7" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
@@ -278,8 +279,8 @@
                 <button id="completeBtn" onclick="finishCleanup()" 
                         class="w-full py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold rounded-xl hover:opacity-95 shadow-lg transition-all duration-300">
                     Generate My Freedom Card (0% Secured) 🎉
-                </button>
 
+                </button>
             </div>
         </div>
 
@@ -298,8 +299,8 @@
 
             <!-- The Viral Generated Certificate Design -->
             <div id="certificateCard" class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
-                <!-- Watermark Background icon -->
 
+                <!-- Watermark Background icon -->
                 <div class="absolute -right-6 -bottom-6 text-9xl text-zinc-900/30 select-none pointer-events-none font-bold">🕊️</div>
                 
                 <div class="flex justify-between items-start">
@@ -318,8 +319,8 @@
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500">Breakup Severity Mode:</span>
                         <span class="font-semibold text-zinc-300" id="certSeverity">Toxic Mode</span>
-                    </div>
 
+                    </div>
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500">Arijit Singh Protection:</span>
                         <span class="font-semibold text-emerald-400">Fully Enabled ✔</span>
@@ -338,8 +339,8 @@
             <button onclick="resetApp()" class="text-xs text-zinc-500 hover:text-zinc-400 underline block mx-auto">
                 Start Over / Reset System
             </button>
-        </div>
 
+        </div>
 
     </main>
 
@@ -358,14 +359,14 @@
         window.severityMode = '';
         window.globalPercentage = 0;
         window.player = null;
+
         window.isPlaying = false;
 
-
-        // Optimized alternative embeddable lyric track mapping nodes
+        // Clean embeddable lyric track mapping nodes (High embedded audio performance availability versions)
         const videoTracks = {
-            mutual: 'f1S7w2bBw6U',  // Hamari Adhuri Kahani (Lyrics stream)
-            ghosted: 'O3MHe7m7mC0', // Channa Mereya (High availability audio layer)
-            dhoka: 'wTzM9K6I3Fw'    // Pachtaoge (Lyrical version unblocked)
+            mutual: 'f1S7w2bBw6U',  // Hamari Adhuri Kahani 
+            ghosted: 'O3MHe7m7mC0', // Channa Mereya
+            dhoka: 'wTzM9K6I3Fw'    // Pachtaoge
         };
 
         const trackNames = {
@@ -378,9 +379,9 @@
             "Tumhara access gaya, ab sirf memories bachi hain.",
             "Password changed! Background me 'Channa Mereya' baj raha hai.",
             "Location revoke ho gayi, ab stalk karna mushkil hai.",
+
             "Google Drive cleaned. No more matching outfits archives.",
             "Splitwise settled. Paisa safe, data bhi safe!",
-
             "Digital break-up complete. Access denied permanently."
         ];
 
@@ -388,20 +389,25 @@
         window.onYouTubeIframeAPIReady = function() {
             try {
                 window.player = new YT.Player('ytPlayer', {
-                    height: '10',
-                    width: '10',
+                    height: '100%',
+                    width: '100%',
                     videoId: 'O3MHe7m7mC0',
                     playerVars: {
                         'playsinline': 1,
                         'controls': 0,
                         'disablekb': 1,
                         'rel': 0,
-                        'origin': window.location.origin
+                        'origin': window.location.origin,
+                        'modestbranding': 1,
+
+                        'mute': 0
                     },
                     events: {
-                        'onReady': function() {
-
+                        'onReady': function(e) {
                             console.log("Audio pipeline connected safely.");
+                            if(e.target && typeof e.target.setVolume === 'function') {
+                                e.target.setVolume(100);
+                            }
                         },
                         'onError': function(e) {
                             console.log("Stream playback retry code issued:", e.data);
@@ -413,6 +419,7 @@
             }
         };
 
+
         window.showToast = function(msg, icon) {
             if (!icon) icon = '💔';
             const toast = document.getElementById('customToast');
@@ -420,7 +427,6 @@
             document.getElementById('toastIcon').innerText = icon;
             
             toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
-
             toast.classList.add('opacity-100', 'translate-y-0');
             
             setTimeout(function() {
@@ -433,6 +439,7 @@
             window.selectedType = label;
             window.severityMode = type;
             document.getElementById('certSeverity').innerText = label;
+
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = false;
@@ -440,7 +447,6 @@
             startBtn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
             startBtn.innerText = 'Lockdown into ' + label;
             
-
             document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Arijit Singh Lockdown' : type.toUpperCase();
             document.getElementById('trackName').innerText = trackNames[type];
 
@@ -453,6 +459,7 @@
         };
 
         window.goToDashboard = function() {
+
             // CRITICAL POLICY FIX: Trigger audio stream IMMEDIATELY inside synchronous click context stack
             // This captures the browser gesture context token cleanly before executing animations.
             if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
@@ -460,7 +467,6 @@
                     window.player.loadVideoById({ videoId: videoTracks[window.severityMode] });
                     window.player.playVideo();
                     window.isPlaying = true;
-
                     document.getElementById('soundwave').classList.remove('paused-bars');
                     document.getElementById('audioToggleBtn').innerText = "Pause";
                 } catch (audioError) {
@@ -473,6 +479,7 @@
             
             welcome.classList.add('opacity-0', 'translate-y-4');
             setTimeout(function() {
+
                 welcome.classList.add('hidden');
                 dash.classList.remove('hidden');
                 setTimeout(function() {
@@ -480,7 +487,6 @@
                     dash.classList.add('opacity-100', 'translate-y-0');
                     
                     window.updateProgress();
-
                 }, 50);
             }, 300);
         };
@@ -493,6 +499,7 @@
 
             if (!window.isPlaying) {
                 window.player.playVideo();
+
                 window.isPlaying = true;
                 soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
@@ -500,7 +507,6 @@
             } else {
                 window.player.pauseVideo();
                 window.isPlaying = false;
-
                 soundwave.classList.add('paused-bars');
                 toggleBtn.innerText = "Play";
                 window.showToast("Track paused!", "🤫");
@@ -513,6 +519,7 @@
                 if(document.getElementById('task' + i).checked) {
                     checkedCount++;
                 }
+
             }
 
             window.globalPercentage = Math.round((checkedCount / window.totalTasks) * 100);
@@ -520,7 +527,6 @@
             document.getElementById('progressText').innerText = window.globalPercentage + '%';
             document.getElementById('progressBar').style.width = window.globalPercentage + '%';
             
-
             if(checkedCount > 0 && checkedCount <= window.totalTasks) {
                 const randomQuote = dynamicQuotes[Math.min(checkedCount - 1, dynamicQuotes.length - 1)];
                 document.getElementById('quoteText').innerText = randomQuote;
@@ -533,6 +539,7 @@
         window.finishCleanup = function() {
             const dash = document.getElementById('dashboardScreen');
             const success = document.getElementById('successScreen');
+
             
             document.getElementById('certId').innerText = '#AZADI-' + Math.floor(1000 + Math.random() * 9000);
             
@@ -540,7 +547,6 @@
             certText.innerText = window.globalPercentage + '% Clean & Secured';
             
             if(window.globalPercentage === 100) {
-
                 certText.className = "font-semibold text-emerald-400";
             } else if(window.globalPercentage > 40) {
                 certText.className = "font-semibold text-pink-400";
@@ -553,6 +559,7 @@
                 dash.classList.add('hidden');
                 success.classList.remove('hidden');
                 setTimeout(function() {
+
                     success.classList.remove('opacity-0', 'translate-y-4');
                     success.classList.add('opacity-100', 'translate-y-0');
                 }, 50);
@@ -560,7 +567,6 @@
         };
 
         window.copyShareLink = function() {
-
             const textToCopy = '💔 Just achieved ' + window.globalPercentage + '% Digital Azadi using the \'Dil Tuta, Data Bachao\' Toolkit! Ex-access status verified under ' + (window.selectedType || 'Strict') + ' Mode. Stop your ex from snooping around your privacy grids! #CyberSecurity';
             
             const el = document.createElement('textarea');
@@ -573,6 +579,7 @@
             window.showToast("Copied status card text!", '✅');
         };
 
+
         window.resetApp = function() {
             if (window.player && typeof window.player.pauseVideo === 'function') {
                 window.player.pauseVideo();
@@ -580,7 +587,6 @@
             window.isPlaying = false;
 
             for(let i = 1; i <= window.totalTasks; i++) {
-
                 document.getElementById('task' + i).checked = false;
             }
             window.selectedType = '';
@@ -593,6 +599,7 @@
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
+
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = true;
@@ -600,7 +607,6 @@
             startBtn.innerText = "Select a Level to Start Cleanup";
 
             document.getElementById('successScreen').classList.add('hidden', 'opacity-0');
-
             const welcome = document.getElementById('welcomeScreen');
             welcome.classList.remove('hidden');
             setTimeout(function() {
@@ -613,6 +619,7 @@
         (function() {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
+
             const firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         })();
