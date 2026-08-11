@@ -1,5 +1,3 @@
-# Dil Tuta, Data Bachao Dashboard
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +17,6 @@
             filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
         }
         .custom-scrollbar::-webkit-scrollbar {
-
             width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
@@ -39,7 +36,6 @@
         }
         .bar:nth-child(2) { animation-delay: 0.15s; }
         .bar:nth-child(3) { animation-delay: 0.3s; }
-
         .bar:nth-child(4) { animation-delay: 0.45s; }
         @keyframes bounce {
             from { height: 4px; }
@@ -58,7 +54,6 @@
         <span id="toastIcon">💔</span>
         <span id="toastMessage">Action Logged!</span>
     </div>
-
 
     <!-- MAIN APP CONTAINER -->
     <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto">
@@ -79,7 +74,6 @@
 
             <!-- Severity / Drama Meter Setup -->
             <div class="mt-8 space-y-4">
-
                 <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">
                     Select Your Breakup Drama Level:
                 </label>
@@ -99,7 +93,6 @@
                         <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Ghosted / Suddenly Blocked</h3>
                         <p class="text-xs text-zinc-500 mt-0.5">High risk of revenge login or snooping.</p>
                     </div>
-
                     <span class="text-xl">🚫</span>
                 </button>
 
@@ -119,7 +112,6 @@
                     Select a Level to Start Cleanup
                 </button>
             </div>
-
         </div>
 
         <!-- SCREEN 2: ACTIVE SECURE DASHBOARD -->
@@ -139,7 +131,6 @@
                     <span id="progressText" class="text-xl font-extrabold text-rose-500">0%</span>
                     <p class="text-[10px] text-zinc-500 font-medium">Data Secured</p>
                 </div>
-
             </div>
 
             <!-- Dynamic Live Progress Bar -->
@@ -159,7 +150,6 @@
                     </div>
                     <div>
                         <p class="font-semibold text-zinc-300 uppercase tracking-wide text-[10px]">Current Vibe Player</p>
-
                         <p id="trackName" class="text-zinc-500 text-[11px] truncate max-w-[180px]">Radio Tuning...</p>
                     </div>
                 </div>
@@ -179,7 +169,6 @@
                 <!-- CATEGORY 1: OTT & STREAMING -->
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
-
                         <span>🎬</span> <span>Phase 1: The Shared Entertainment Cutoff</span>
                     </h4>
                     <div class="space-y-2">
@@ -200,7 +189,6 @@
                     </div>
                 </div>
 
-
                 <!-- CATEGORY 2: LOCATION & TRACKING -->
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
@@ -220,7 +208,6 @@
                                 <span class="block font-semibold text-zinc-200">Turn off Find My / Device Trackers</span>
                                 <span class="block text-zinc-500 mt-0.5">Ensure no shared logins have real-time apple/android hardware access.</span>
                             </label>
-
                         </div>
                     </div>
                 </div>
@@ -240,7 +227,6 @@
                         </div>
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task6" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
-
                             <label for="task6" class="ml-3 text-xs w-full cursor-pointer">
                                 <span class="block font-semibold text-zinc-200">Disable Google Photos Partner Sharing</span>
                                 <span class="block text-zinc-500 mt-0.5">Settings -> Partner Sharing -> Remove Partner to stop auto-syncing gallery.</span>
@@ -258,9 +244,8 @@
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task7" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task7" class="ml-3 text-xs w-full cursor-pointer">
-                                * <span class="block font-semibold text-zinc-200">Settle Splitwise & Linked UPI Autopays</span>
+                                <span class="block font-semibold text-zinc-200">Settle Splitwise & Linked UPI Autopays</span>
                                 <span class="block text-zinc-500 mt-0.5">Clear old dues and check if any recurring subscription pulls from your wallet.</span>
-
                             </label>
                         </div>
                     </div>
@@ -268,7 +253,7 @@
 
             </div>
 
-            <!-- Complete Action Panel (Always enabled now to generate anytime) -->
+            <!-- Complete Action Panel -->
             <div class="mt-6 pt-4 border-t border-zinc-800 text-center">
                 <button id="completeBtn" onclick="finishCleanup()" 
                         class="w-full py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold rounded-xl hover:opacity-95 shadow-lg transition-all duration-300">
@@ -280,7 +265,6 @@
         <!-- SCREEN 3: SUCCESS / FREEDOM CARD -->
         <div id="successScreen" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 md:p-8 backdrop-blur-xl hidden opacity-0 transition-all duration-500 transform translate-y-4 text-center space-y-6">
             <div class="inline-flex p-4 bg-emerald-500/10 rounded-full text-emerald-400 text-3xl mx-auto shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-
                 🛡️
             </div>
             
@@ -291,7 +275,7 @@
                 </p>
             </div>
 
-            <!-- The Viral Generated Certificate Design (Now fully dynamic) -->
+            <!-- The Viral Generated Certificate Design -->
             <div id="certificateCard" class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
                 <!-- Watermark Background icon -->
                 <div class="absolute -right-6 -bottom-6 text-9xl text-zinc-900/30 select-none pointer-events-none font-bold">🕊️</div>
@@ -300,7 +284,6 @@
                     <div>
                         <span class="text-[9px] font-bold tracking-widest text-rose-500 uppercase">OFFICIAL COMPLIANCE</span>
                         <h3 class="text-base font-extrabold text-zinc-200 mt-0.5">DATA FREEDOM CERTIFICATE</h3>
-
                     </div>
                     <span class="text-xs font-mono text-zinc-600" id="certId">#AZADI-9832</span>
                 </div>
@@ -319,7 +302,6 @@
                         <span class="font-semibold text-emerald-400">Fully Enabled ✔</span>
                     </div>
                 </div>
-
 
                 <p class="mt-6 text-[10px] text-zinc-500 italic text-center border-t border-zinc-950 pt-3">
                     "Thappad se darr nahi lagta saab, data leak se lagta hai."
@@ -340,7 +322,6 @@
     <!-- FOOTER -->
     <footer class="py-4 text-center border-t border-zinc-900 bg-black/20">
         <p class="text-[10px] tracking-wide text-zinc-600 font-semibold uppercase">
-
             Made with 💔 for Better Digital Privacy
         </p>
     </footer>
@@ -352,21 +333,23 @@
         let severityMode = '';
         let globalPercentage = 0;
 
-        // Streaming links
-        const audioTracks = {
-            mutual: new Audio('https://learningcontainer.com'),
-            ghosted: new Audio('https://cdn.simplecast.com/audio/56a1c6/56a1c6fa-abc9-487c-aed8-a71dbd067aef/95549871-c106-4073-826c-fd9a98f9f8e3/538274343_mamilospod_173_eu_nao_sou_racista_tc.mp3'),
-            dhoka: new Audio('https://learningcontainer.com')
+        // Web Audio API State Configuration
+        let audioCtx = null;
+        let isPlaying = false;
+        let synthInterval = null;
+
+        // Native Synth Musical Frequency Scales (Sad minor lofi chords progression)
+        const melodies = {
+            mutual: [261.63, 329.63, 392.00, 440.00], // C4, E4, G4, A4 (Calm, Bittersweet)
+            ghosted: [220.00, 261.63, 293.66, 349.23], // A3, C4, D4, F4 (Sad Minor Melancholy)
+            dhoka: [196.00, 233.08, 220.00, 174.61]   // G3, Bb3, A3, F3 (Dramatic Aggressive Melodrama)
         };
 
         const trackNames = {
-
-            mutual: "🎵 Sad Instrumental Vibe (Online Stream 1)",
-            ghosted: "🎵 Breakup Beats Radio (Online Stream 2)",
-            dhoka: "🎵 Extreme Lockdown Audio (Online Stream 3)"
+            mutual: "📻 Radio Synth: Mutual Healing (Lo-Fi Calm Wave)",
+            ghosted: "📻 Radio Synth: Ghosted Silence (Lo-Fi Sad Minor)",
+            dhoka: "📻 Radio Synth: Full Toxic Heartbreak (Sawtooth Rage Mix)"
         };
-
-        let currentAudio = null;
 
         const dynamicQuotes = [
             "Tumhara access gaya, ab sirf memories bachi hain.",
@@ -377,10 +360,55 @@
             "Digital break-up complete. Access denied permanently."
         ];
 
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSynthMelody(type) {
+            initAudio();
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            
+            if (synthInterval) clearInterval(synthInterval);
+            
+            let notes = melodies[type] || melodies.mutual;
+            let step = 0;
+            
+            isPlaying = true;
+            document.getElementById('soundwave').classList.remove('paused-bars');
+            document.getElementById('audioToggleBtn').innerText = "Pause";
+
+            // Infinite sequence looping algorithm for native sound wave mapping
+            synthInterval = setInterval(() => {
+                if (!isPlaying) return;
+                
+                let osc = audioCtx.createOscillator();
+                let gainNode = audioCtx.createGain();
+                
+                // Sawtooth for extreme anger, triangle for standard smooth lofi wave
+                osc.type = type === 'dhoka' ? 'sawtooth' : 'triangle'; 
+                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
+                
+                // Volume controller envelope to prevent harsh clip crackling noises
+                gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
+                
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.55);
+                
+                step++;
+            }, 550);
+        }
+
         function showToast(msg, icon = '💔') {
             const toast = document.getElementById('customToast');
             document.getElementById('toastMessage').innerText = msg;
-
             document.getElementById('toastIcon').innerText = icon;
             
             toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
@@ -400,27 +428,16 @@
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = false;
             startBtn.classList.remove('bg-zinc-800', 'text-zinc-500', 'cursor-not-allowed');
-
             startBtn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
             startBtn.innerText = `Lockdown into ${label}`;
             
             document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Arijit Singh Lockdown' : type.toUpperCase();
-            
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
-            }
-            currentAudio = audioTracks[type];
-            if (currentAudio) {
-                currentAudio.loop = true;
-            }
             document.getElementById('trackName').innerText = trackNames[type];
 
             showToast(`${label} config selected!`, '⚡');
         }
 
         function goToDashboard() {
-
             const welcome = document.getElementById('welcomeScreen');
             const dash = document.getElementById('dashboardScreen');
             
@@ -432,39 +449,29 @@
                     dash.classList.remove('opacity-0', 'translate-y-4');
                     dash.classList.add('opacity-100', 'translate-y-0');
                     
-                    // Sync original initial progress tracker metrics
                     updateProgress();
 
-                    if (currentAudio) {
-                        currentAudio.play()
-                            .then(() => {
-                                document.getElementById('soundwave').classList.remove('paused-bars');
-                                document.getElementById('audioToggleBtn').innerText = "Pause";
-
-                            })
-                            .catch(err => {
-                                console.log("Autoplay bound block caught:", err);
-                                document.getElementById('trackName').innerText = "Click Play to Tune Radio 📻";
-                            });
+                    // Instantly trigger hardware synthesis safe from CORS limits
+                    if (severityMode) {
+                        playSynthMelody(severityMode);
                     }
                 }, 50);
             }, 300);
         }
 
         function toggleMusic() {
-            if (!currentAudio) return;
-
             const soundwave = document.getElementById('soundwave');
             const toggleBtn = document.getElementById('audioToggleBtn');
 
-            if (currentAudio.paused) {
-                currentAudio.play();
-                soundwave.classList.remove('paused-bars');
+            if (!severityMode) return;
 
+            if (!isPlaying) {
+                isPlaying = true;
+                soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
                 showToast("Radio unmuted!", "🎵");
             } else {
-                currentAudio.pause();
+                isPlaying = false;
                 soundwave.classList.add('paused-bars');
                 toggleBtn.innerText = "Play";
                 showToast("Radio paused!", "🤫");
@@ -480,7 +487,6 @@
             }
 
             globalPercentage = Math.round((checkedCount / totalTasks) * 100);
-
             
             document.getElementById('progressText').innerText = `${globalPercentage}%`;
             document.getElementById('progressBar').style.width = `${globalPercentage}%`;
@@ -490,7 +496,6 @@
                 document.getElementById('quoteText').innerText = randomQuote;
             }
 
-            // Always allow generation based on live checked states
             const completeBtn = document.getElementById('completeBtn');
             completeBtn.innerText = `Generate My Freedom Card (${globalPercentage}% Secured) 🎉`;
         }
@@ -500,9 +505,7 @@
             const success = document.getElementById('successScreen');
             
             document.getElementById('certId').innerText = `#AZADI-${Math.floor(1000 + Math.random() * 9000)}`;
-
             
-            // Set dynamic clearance message text into certificate card directly
             const certText = document.getElementById('certProgressText');
             certText.innerText = `${globalPercentage}% Clean & Secured`;
             
@@ -520,7 +523,6 @@
                 success.classList.remove('hidden');
                 setTimeout(() => {
                     success.classList.remove('opacity-0', 'translate-y-4');
-
                     success.classList.add('opacity-100', 'translate-y-0');
                 }, 50);
             }, 300);
@@ -540,12 +542,11 @@
         }
 
         function resetApp() {
-
-            if (currentAudio) {
-                currentAudio.pause();
-                currentAudio.currentTime = 0;
+            if (synthInterval) clearInterval(synthInterval);
+            isPlaying = false;
+            if (audioCtx) {
+                audioCtx.close().then(() => { audioCtx = null; });
             }
-            currentAudio = null;
 
             for(let i = 1; i <= totalTasks; i++) {
                 document.getElementById(`task${i}`).checked = false;
@@ -560,7 +561,6 @@
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
-
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = true;
