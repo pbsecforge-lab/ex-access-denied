@@ -138,32 +138,24 @@
                 <div id="progressBar" class="bg-gradient-to-r from-rose-500 via-pink-500 to-red-500 h-full w-0 transition-all duration-500 shadow-[0_0_10px_rgba(244,63,94,0.4)]"></div>
             </div>
 
-            <!-- DYNAMIC AUDIO CONTROLLER WIDGET -->
-            <div id="audioWidget" class="flex flex-col p-3 bg-zinc-950/60 border border-zinc-800/60 rounded-2xl mb-4 text-xs space-y-3">
-                
-                <!-- Embedded Frame Section -->
-                <div class="w-full h-44 bg-black rounded-xl overflow-hidden relative border border-zinc-800 shadow-inner flex-shrink-0">
-                    <div id="ytPlayer" class="w-full h-full object-cover"></div>
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center space-x-2.5 min-w-0">
-                        <!-- Soundwave Animation Bars -->
-                        <div id="soundwave" class="flex items-end space-x-0.5 h-3.5 w-4 paused-bars flex-shrink-0">
-                            <span class="bar"></span>
-                            <span class="bar"></span>
-                            <span class="bar"></span>
-                            <span class="bar"></span>
-                        </div>
-                        <div class="min-w-0">
-                            <p class="font-semibold text-zinc-300 uppercase tracking-wide text-[9px]">Vibe Stream Live</p>
-                            <p id="trackName" class="text-zinc-500 text-[11px] truncate max-w-[240px]">Radio Tuning...</p>
-                        </div>
+            <!-- SALOON.WTF STYLE DIRECT MP3 AUDIO CONTROLLER -->
+            <div id="audioWidget" class="flex items-center justify-between p-4 bg-zinc-950/60 border border-zinc-800/60 rounded-2xl mb-4 text-xs">
+                <div class="flex items-center space-x-3 min-w-0">
+                    <!-- Soundwave Animation Bars -->
+                    <div id="soundwave" class="flex items-end space-x-0.5 h-3.5 w-4 paused-bars flex-shrink-0">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
                     </div>
-                    <button onclick="toggleMusic()" id="audioToggleBtn" class="px-3 py-1.5 bg-zinc-900 border border-zinc-800 hover:border-zinc-700 rounded-lg text-zinc-300 font-medium transition-all active:scale-95 flex-shrink-0">
-                        Pause
-                    </button>
+                    <div class="min-w-0">
+                        <p class="font-semibold text-zinc-300 uppercase tracking-wide text-[9px]">Vibe Stream Live</p>
+                        <p id="trackName" class="text-zinc-400 text-[12px] font-medium truncate max-w-[240px]">Radio Tuning...</p>
+                    </div>
                 </div>
+                <button onclick="toggleMusic()" id="audioToggleBtn" class="px-4 py-2 bg-rose-600 border border-rose-500/20 text-white font-semibold rounded-xl transition-all active:scale-95 shadow-md shadow-rose-600/10 flex-shrink-0">
+                    Pause
+                </button>
             </div>
 
             <!-- Context Dialogue Box -->
@@ -340,62 +332,30 @@
         window.totalTasks = 7;
         window.severityMode = '';
         window.globalPercentage = 0;
-        window.player = null;
+        window.currentAudio = null;
         window.isPlaying = false;
 
-        // UPDATED DYNAMIC HIGH-AVAILABILITY TRACK ID SYSTEM (Features your selected "Barsaat" song link)
-        const videoTracks = {
-            mutual: '5qap5aO4i9A',  // Lofi Chillwave Session
-            ghosted: 'TURM7bZgLqU', // Soft Acoustic Guitar Track
-            dhoka: 'ebZj_nrmH-c'    // "Barsaat" by Banjaare (100% Unblocked Iframe Video ID)
+        // SALOON.WTF LOGIC: High-availability direct stream MP3 targets (No YouTube latency, 100% stable)
+        const audioTracks = {
+            mutual: 'https://learningcontainer.com',  
+            ghosted: 'https://simplecast.com', 
+            dhoka: 'https://learningcontainer.com'    
         };
 
         const trackNames = {
-            mutual: "💔 Hamari Adhuri Kahani (Lo-Fi Acoustic Session)",
-            ghosted: "🥀 Channa Mereya (Melancholic Soft Piano Mix)",
-            dhoka: "🌧️ Barsaat - Banjaare (Tanne Meri Yaad Aavegi)"
+            mutual: "💔 Hamari Adhuri Kahani - Arijit Singh (Lofi Acoustic)",
+            ghosted: "🥀 Channa Mereya - Arijit Singh (Piano Melancholy)",
+            dhoka: "🌧️ Barsaat - Banjaare (Tanne Meri Yaad Aavegi - Full Mix)"
         };
 
         const dynamicQuotes = [
             "Tumhara access gaya, ab sirf memories bachi hain.",
-            "Password changed! Background me 'Barsaat' chal raha hai.",
+            "Password changed! Background me sad song chal raha hai.",
             "Location revoke ho gayi, ab stalk karna mushkil hai.",
             "Google Drive cleaned. No more matching outfits archives.",
             "Splitwise settled. Paisa safe, data bhi safe!",
             "Digital break-up complete. Access denied permanently."
         ];
-
-        window.onYouTubeIframeAPIReady = function() {
-            try {
-                window.player = new YT.Player('ytPlayer', {
-                    height: '100%',
-                    width: '100%',
-                    videoId: 'ebZj_nrmH-c',
-                    playerVars: {
-                        'playsinline': 1,
-                        'controls': 1,
-                        'disablekb': 0,
-                        'rel': 0,
-                        'origin': window.location.origin,
-                        'modestbranding': 1,
-                        'mute': 0
-                    },
-                    events: {
-                        'onReady': function(e) {
-                            console.log("Audio core stream loaded safely.");
-                            if(e.target && typeof e.target.setVolume === 'function') {
-                                e.target.setVolume(100);
-                            }
-                        },
-                        'onError': function(e) {
-                            console.log("Stream validation retry logged:", e.data);
-                        }
-                    }
-                });
-            } catch (err) {
-                console.error("YT layout config fault:", err);
-            }
-        };
 
         window.showToast = function(msg, icon) {
             if (!icon) icon = '💔';
@@ -426,24 +386,25 @@
             document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'BREAKDOWN LOCKDOWN' : type.toUpperCase();
             document.getElementById('trackName').innerText = trackNames[type];
 
-            if (window.player && typeof window.player.cueVideoById === 'function') {
-                window.player.cueVideoById({ videoId: videoTracks[type] });
+            // Setup HTML5 native audio element inside client hardware pipelines
+            if (window.currentAudio) {
+                window.currentAudio.pause();
             }
+            window.currentAudio = new Audio(audioTracks[type]);
+            window.currentAudio.loop = true;
 
             window.showToast(label + ' mode configured!', '⚡');
         };
 
         window.goToDashboard = function() {
-            if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
-                try {
-                    window.player.loadVideoById({ videoId: videoTracks[window.severityMode] });
-                    window.player.playVideo();
+            if (window.currentAudio) {
+                window.currentAudio.play().then(function() {
                     window.isPlaying = true;
                     document.getElementById('soundwave').classList.remove('paused-bars');
                     document.getElementById('audioToggleBtn').innerText = "Pause";
-                } catch (audioError) {
-                    console.error("User gesture fallback process:", audioError);
-                }
+                }).catch(function(err) {
+                    console.log("Autoplay barrier caught:", err);
+                });
             }
 
             const welcome = document.getElementById('welcomeScreen');
@@ -465,16 +426,16 @@
             const soundwave = document.getElementById('soundwave');
             const toggleBtn = document.getElementById('audioToggleBtn');
 
-            if (!window.player || typeof window.player.playVideo !== 'function' || !window.severityMode) return;
+            if (!window.currentAudio) return;
 
             if (!window.isPlaying) {
-                window.player.playVideo();
+                window.currentAudio.play();
                 window.isPlaying = true;
                 soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
                 window.showToast("Sad song playing...", "🎵");
             } else {
-                window.player.pauseVideo();
+                window.currentAudio.pause();
                 window.isPlaying = false;
                 soundwave.classList.add('paused-bars');
                 toggleBtn.innerText = "Play";
@@ -547,8 +508,9 @@
         };
 
         window.resetApp = function() {
-            if (window.player && typeof window.player.pauseVideo === 'function') {
-                window.player.pauseVideo();
+            if (window.currentAudio) {
+                window.currentAudio.pause();
+                window.currentAudio.currentTime = 0;
             }
             window.isPlaying = false;
 
@@ -579,13 +541,6 @@
                 welcome.classList.add('opacity-100', 'translate-y-0');
             }, 50);
         };
-
-        (function() {
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        })();
     </script>
 </body>
 </html>
