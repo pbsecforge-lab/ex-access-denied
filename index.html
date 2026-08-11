@@ -60,13 +60,13 @@
     </div>
 
 
-    <!-- Hidden YouTube Player Container (Avoids CORS issues & streams background audio perfectly) -->
-    <div class="absolute w-px h-px opacity-0 overflow-hidden pointer-events-none">
+    <!-- Hidden YouTube Player Container (1x1 px transparent layout to fully load iframe pipelines) -->
+    <div class="absolute top-0 left-0 w-px h-px opacity-0 overflow-hidden pointer-events-none z-0">
         <div id="ytPlayer"></div>
     </div>
 
     <!-- MAIN APP CONTAINER -->
-    <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto">
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto relative z-10">
         
         <!-- SCREEN 1: THE WELCOME / BREAKUP METER -->
         <div id="welcomeScreen" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-3xl p-6 md:p-8 backdrop-blur-xl transition-all duration-500 transform translate-y-0 opacity-100">
@@ -352,7 +352,7 @@
 
     <!-- INTERACTIVE APP SCRIPT -->
     <script>
-        // Define all global states explicitly to ensure strict scoping clearance
+        // Define all global states explicitly to ensure zero scope collision
         window.selectedType = '';
         window.totalTasks = 7;
         window.severityMode = '';
@@ -361,11 +361,11 @@
         window.isPlaying = false;
 
 
-        // Video track mappings using whitelisted asset IDs
+        // Optimized alternative embeddable lyric track mapping nodes
         const videoTracks = {
-            mutual: 'TxT0KZ-EdLs',  // Hamari Adhuri Kahani
-            ghosted: 'dxcXdtZh_QA', // Channa Mereya
-            dhoka: '6W9pJwFLgCI'    // Pachtaoge
+            mutual: 'f1S7w2bBw6U',  // Hamari Adhuri Kahani (Lyrics stream)
+            ghosted: 'O3MHe7m7mC0', // Channa Mereya (High availability audio layer)
+            dhoka: 'wTzM9K6I3Fw'    // Pachtaoge (Lyrical version unblocked)
         };
 
         const trackNames = {
@@ -384,28 +384,32 @@
             "Digital break-up complete. Access denied permanently."
         ];
 
-        // Global YouTube Player Callback Handler
+        // YouTube Player Instance Initializer Setup
         window.onYouTubeIframeAPIReady = function() {
             try {
                 window.player = new YT.Player('ytPlayer', {
-                    height: '1',
-                    width: '1',
-                    videoId: 'dxcXdtZh_QA',
+                    height: '10',
+                    width: '10',
+                    videoId: 'O3MHe7m7mC0',
                     playerVars: {
                         'playsinline': 1,
                         'controls': 0,
                         'disablekb': 1,
-                        'rel': 0
+                        'rel': 0,
+                        'origin': window.location.origin
                     },
                     events: {
                         'onReady': function() {
-                            console.log("Audio Engine Connected.");
 
+                            console.log("Audio pipeline connected safely.");
+                        },
+                        'onError': function(e) {
+                            console.log("Stream playback retry code issued:", e.data);
                         }
                     }
                 });
-            } catch (e) {
-                console.error("YT Player creation failure:", e);
+            } catch (err) {
+                console.error("YT init error:", err);
             }
         };
 
@@ -416,11 +420,11 @@
             document.getElementById('toastIcon').innerText = icon;
             
             toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
+
             toast.classList.add('opacity-100', 'translate-y-0');
             
             setTimeout(function() {
                 toast.classList.remove('opacity-100', 'translate-y-0');
-
                 toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
             }, 2500);
         };
@@ -436,18 +440,34 @@
             startBtn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
             startBtn.innerText = 'Lockdown into ' + label;
             
+
             document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Arijit Singh Lockdown' : type.toUpperCase();
             document.getElementById('trackName').innerText = trackNames[type];
 
+            // Cue early to cache headers
             if (window.player && typeof window.player.cueVideoById === 'function') {
-
                 window.player.cueVideoById({ videoId: videoTracks[type] });
             }
 
-            window.showToast(label + ' config selected!', '⚡');
+            window.showToast(label + ' mode configured!', '⚡');
         };
 
         window.goToDashboard = function() {
+            // CRITICAL POLICY FIX: Trigger audio stream IMMEDIATELY inside synchronous click context stack
+            // This captures the browser gesture context token cleanly before executing animations.
+            if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
+                try {
+                    window.player.loadVideoById({ videoId: videoTracks[window.severityMode] });
+                    window.player.playVideo();
+                    window.isPlaying = true;
+
+                    document.getElementById('soundwave').classList.remove('paused-bars');
+                    document.getElementById('audioToggleBtn').innerText = "Pause";
+                } catch (audioError) {
+                    console.error("Gesture stream error bypass:", audioError);
+                }
+            }
+
             const welcome = document.getElementById('welcomeScreen');
             const dash = document.getElementById('dashboardScreen');
             
@@ -461,14 +481,6 @@
                     
                     window.updateProgress();
 
-
-                    if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
-                        window.player.loadVideoById({ videoId: videoTracks[window.severityMode] });
-                        window.player.playVideo();
-                        window.isPlaying = true;
-                        document.getElementById('soundwave').classList.remove('paused-bars');
-                        document.getElementById('audioToggleBtn').innerText = "Pause";
-                    }
                 }, 50);
             }, 300);
         };
@@ -481,14 +493,14 @@
 
             if (!window.isPlaying) {
                 window.player.playVideo();
-
                 window.isPlaying = true;
                 soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
-                window.showToast("Bollywood track resumed!", "🎵");
+                window.showToast("Sad song playing...", "🎵");
             } else {
                 window.player.pauseVideo();
                 window.isPlaying = false;
+
                 soundwave.classList.add('paused-bars');
                 toggleBtn.innerText = "Play";
                 window.showToast("Track paused!", "🤫");
@@ -501,7 +513,6 @@
                 if(document.getElementById('task' + i).checked) {
                     checkedCount++;
                 }
-
             }
 
             window.globalPercentage = Math.round((checkedCount / window.totalTasks) * 100);
@@ -509,6 +520,7 @@
             document.getElementById('progressText').innerText = window.globalPercentage + '%';
             document.getElementById('progressBar').style.width = window.globalPercentage + '%';
             
+
             if(checkedCount > 0 && checkedCount <= window.totalTasks) {
                 const randomQuote = dynamicQuotes[Math.min(checkedCount - 1, dynamicQuotes.length - 1)];
                 document.getElementById('quoteText').innerText = randomQuote;
@@ -521,7 +533,6 @@
         window.finishCleanup = function() {
             const dash = document.getElementById('dashboardScreen');
             const success = document.getElementById('successScreen');
-
             
             document.getElementById('certId').innerText = '#AZADI-' + Math.floor(1000 + Math.random() * 9000);
             
@@ -529,6 +540,7 @@
             certText.innerText = window.globalPercentage + '% Clean & Secured';
             
             if(window.globalPercentage === 100) {
+
                 certText.className = "font-semibold text-emerald-400";
             } else if(window.globalPercentage > 40) {
                 certText.className = "font-semibold text-pink-400";
@@ -541,7 +553,6 @@
                 dash.classList.add('hidden');
                 success.classList.remove('hidden');
                 setTimeout(function() {
-
                     success.classList.remove('opacity-0', 'translate-y-4');
                     success.classList.add('opacity-100', 'translate-y-0');
                 }, 50);
@@ -549,6 +560,7 @@
         };
 
         window.copyShareLink = function() {
+
             const textToCopy = '💔 Just achieved ' + window.globalPercentage + '% Digital Azadi using the \'Dil Tuta, Data Bachao\' Toolkit! Ex-access status verified under ' + (window.selectedType || 'Strict') + ' Mode. Stop your ex from snooping around your privacy grids! #CyberSecurity';
             
             const el = document.createElement('textarea');
@@ -561,7 +573,6 @@
             window.showToast("Copied status card text!", '✅');
         };
 
-
         window.resetApp = function() {
             if (window.player && typeof window.player.pauseVideo === 'function') {
                 window.player.pauseVideo();
@@ -569,6 +580,7 @@
             window.isPlaying = false;
 
             for(let i = 1; i <= window.totalTasks; i++) {
+
                 document.getElementById('task' + i).checked = false;
             }
             window.selectedType = '';
@@ -581,7 +593,6 @@
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
-
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = true;
@@ -589,6 +600,7 @@
             startBtn.innerText = "Select a Level to Start Cleanup";
 
             document.getElementById('successScreen').classList.add('hidden', 'opacity-0');
+
             const welcome = document.getElementById('welcomeScreen');
             welcome.classList.remove('hidden');
             setTimeout(function() {
@@ -597,11 +609,10 @@
             }, 50);
         };
 
-        // Asynchronously register the official YouTube Player Iframe script layer safely avoiding race-conditions
+        // Asynchronously inject the official API script safely
         (function() {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
-
             const firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         })();
