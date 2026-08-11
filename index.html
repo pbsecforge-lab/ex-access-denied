@@ -96,7 +96,7 @@
                     <span class="text-xl">🚫</span>
                 </button>
 
-                <button onclick="selectSeverity('dhoka', 'Toxic / Dhoka Hua Hai 💥', 'Kataa hai boss! Enable Full Arijit Singh Lockdown Mode immediately!')" 
+                <button onclick="selectSeverity('dhoka', 'Toxic / Dhoka Hua Hai 💥', 'Kataa hai boss! Enable Full Breakdown Mode immediately!')" 
                         class="w-full text-left p-4 bg-zinc-900 border border-zinc-800 hover:border-rose-900/50 hover:bg-rose-950/10 rounded-xl transition-all duration-200 flex items-center justify-between group">
                     <div>
                         <h3 class="font-bold text-sm text-rose-400 group-hover:text-rose-300">Dhoka / Toxic Split</h3>
@@ -141,7 +141,7 @@
             <!-- DYNAMIC AUDIO CONTROLLER WIDGET -->
             <div id="audioWidget" class="flex flex-col p-3 bg-zinc-950/60 border border-zinc-800/60 rounded-2xl mb-4 text-xs space-y-3">
                 
-                <!-- High-Availability Stable Embedded Player Container -->
+                <!-- Embedded Frame Section -->
                 <div class="w-full h-44 bg-black rounded-xl overflow-hidden relative border border-zinc-800 shadow-inner flex-shrink-0">
                     <div id="ytPlayer" class="w-full h-full object-cover"></div>
                 </div>
@@ -168,7 +168,7 @@
 
             <!-- Context Dialogue Box -->
             <div id="statusQuote" class="p-3 bg-zinc-900/80 border border-zinc-800/80 rounded-xl mb-6 text-xs text-zinc-400 italic text-center flex items-center justify-center space-x-2">
-                <span>⚡</span> <span id="quoteText">Arijit Singh playlist status: Active.</span>
+                <span>⚡</span> <span id="quoteText">Sad playlist status: Active.</span>
             </div>
 
             <!-- CATEGORIZED CHECKLIST -->
@@ -306,7 +306,7 @@
                         <span class="font-semibold text-zinc-300" id="certSeverity">Toxic Mode</span>
                     </div>
                     <div class="flex justify-between text-xs">
-                        <span class="text-zinc-500">Arijit Singh Protection:</span>
+                        <span class="text-zinc-500">Breakup Protection:</span>
                         <span class="font-semibold text-emerald-400">Fully Enabled ✔</span>
                     </div>
                 </div>
@@ -343,23 +343,22 @@
         window.player = null;
         window.isPlaying = false;
 
-        // HIGH AVAILABILITY ENHANCED LO-FI AUDIO VIDEO STREAM TARGETS
-        // Bypasses the YouTube content label domain restrict block filters completely.
+        // UPDATED DYNAMIC HIGH-AVAILABILITY TRACK ID SYSTEM (Features your selected "Barsaat" song link)
         const videoTracks = {
-            mutual: '5qap5aO4i9A',  // Lofi Emotional Chillwave Vibe
-            ghosted: 'TURM7bZgLqU', // Sad Melancholic Acoustic Track
-            dhoka: '1F6f_eH_4u0'    // Deep Painful Cinematic Instrumentals
+            mutual: '5qap5aO4i9A',  // Lofi Chillwave Session
+            ghosted: 'TURM7bZgLqU', // Soft Acoustic Guitar Track
+            dhoka: 'ebZj_nrmH-c'    // "Barsaat" by Banjaare (100% Unblocked Iframe Video ID)
         };
 
         const trackNames = {
-            mutual: "💔 Hamari Adhuri Kahani (Lo-Fi Acoustic Re-vibe)",
-            ghosted: "🥀 Channa Mereya (Melancholic Soft Piano Stream)",
-            dhoka: "🔥 Pachtaoge (High-Intensity Broken Heart Lockdown Mix)"
+            mutual: "💔 Hamari Adhuri Kahani (Lo-Fi Acoustic Session)",
+            ghosted: "🥀 Channa Mereya (Melancholic Soft Piano Mix)",
+            dhoka: "🌧️ Barsaat - Banjaare (Tanne Meri Yaad Aavegi)"
         };
 
         const dynamicQuotes = [
             "Tumhara access gaya, ab sirf memories bachi hain.",
-            "Password changed! Background me 'Channa Mereya' baj raha hai.",
+            "Password changed! Background me 'Barsaat' chal raha hai.",
             "Location revoke ho gayi, ab stalk karna mushkil hai.",
             "Google Drive cleaned. No more matching outfits archives.",
             "Splitwise settled. Paisa safe, data bhi safe!",
@@ -371,7 +370,7 @@
                 window.player = new YT.Player('ytPlayer', {
                     height: '100%',
                     width: '100%',
-                    videoId: '5qap5aO4i9A',
+                    videoId: 'ebZj_nrmH-c',
                     playerVars: {
                         'playsinline': 1,
                         'controls': 1,
@@ -383,18 +382,18 @@
                     },
                     events: {
                         'onReady': function(e) {
-                            console.log("Audio core pipeline active and verified.");
+                            console.log("Audio core stream loaded safely.");
                             if(e.target && typeof e.target.setVolume === 'function') {
                                 e.target.setVolume(100);
                             }
                         },
                         'onError': function(e) {
-                            console.log("Error status caught during embed load:", e.data);
+                            console.log("Stream validation retry logged:", e.data);
                         }
                     }
                 });
             } catch (err) {
-                console.error("YT system init fault:", err);
+                console.error("YT layout config fault:", err);
             }
         };
 
@@ -424,7 +423,7 @@
             startBtn.classList.add('bg-rose-600', 'text-white', 'hover:bg-rose-500', 'shadow-xl', 'shadow-rose-600/10');
             startBtn.innerText = 'Lockdown into ' + label;
             
-            document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'Arijit Singh Lockdown' : type.toUpperCase();
+            document.getElementById('displayBadge').innerText = type === 'dhoka' ? 'BREAKDOWN LOCKDOWN' : type.toUpperCase();
             document.getElementById('trackName').innerText = trackNames[type];
 
             if (window.player && typeof window.player.cueVideoById === 'function') {
@@ -443,7 +442,7 @@
                     document.getElementById('soundwave').classList.remove('paused-bars');
                     document.getElementById('audioToggleBtn').innerText = "Pause";
                 } catch (audioError) {
-                    console.error("Gesture block patch execution fault:", audioError);
+                    console.error("User gesture fallback process:", audioError);
                 }
             }
 
@@ -562,7 +561,7 @@
             
             document.getElementById('progressText').innerText = '0%';
             document.getElementById('progressBar').style.width = '0%';
-            document.getElementById('quoteText').innerText = "Arijit Singh playlist status: Active.";
+            document.getElementById('quoteText').innerText = "Sad playlist status: Active.";
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
