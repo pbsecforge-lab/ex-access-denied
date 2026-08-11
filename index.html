@@ -1,5 +1,3 @@
-# Dil Tuta, Data Bachao Dashboard
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +17,6 @@
             filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.6));
         }
         .custom-scrollbar::-webkit-scrollbar {
-
             width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
@@ -39,7 +36,6 @@
         }
         .bar:nth-child(2) { animation-delay: 0.15s; }
         .bar:nth-child(3) { animation-delay: 0.3s; }
-
         .bar:nth-child(4) { animation-delay: 0.45s; }
         @keyframes bounce {
             from { height: 4px; }
@@ -58,7 +54,6 @@
         <span id="toastIcon">💔</span>
         <span id="toastMessage">Action Logged!</span>
     </div>
-
 
     <!-- MAIN APP CONTAINER -->
     <main class="flex-grow flex items-center justify-center p-4 md:p-6 w-full max-w-lg mx-auto relative z-10">
@@ -79,7 +74,6 @@
 
             <!-- Severity / Drama Meter Setup -->
             <div class="mt-8 space-y-4">
-
                 <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-2">
                     Select Your Breakup Drama Level:
                 </label>
@@ -99,7 +93,6 @@
                         <h3 class="font-bold text-sm text-zinc-200 group-hover:text-white">Ghosted / Suddenly Blocked</h3>
                         <p class="text-xs text-zinc-500 mt-0.5">High risk of revenge login or snooping.</p>
                     </div>
-
                     <span class="text-xl">🚫</span>
                 </button>
 
@@ -119,7 +112,6 @@
                     Select a Level to Start Cleanup
                 </button>
             </div>
-
         </div>
 
         <!-- SCREEN 2: ACTIVE SECURE DASHBOARD -->
@@ -139,7 +131,6 @@
                     <span id="progressText" class="text-xl font-extrabold text-rose-500">0%</span>
                     <p class="text-[10px] text-zinc-500 font-medium">Data Secured</p>
                 </div>
-
             </div>
 
             <!-- Dynamic Live Progress Bar -->
@@ -159,7 +150,6 @@
                     </div>
                     
                     <!-- Small Visible Iframe Container (Bypasses all mobile/desktop browser background volume block policies) -->
-
                     <div class="w-20 h-12 bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden flex-shrink-0 relative">
                         <div id="ytPlayer" class="w-full h-full scale-110 object-cover"></div>
                     </div>
@@ -178,7 +168,6 @@
             <div id="statusQuote" class="p-3 bg-zinc-900/80 border border-zinc-800/80 rounded-xl mb-6 text-xs text-zinc-400 italic text-center flex items-center justify-center space-x-2">
                 <span>⚡</span> <span id="quoteText">Arijit Singh playlist status: Active.</span>
             </div>
-
 
             <!-- CATEGORIZED CHECKLIST -->
             <div class="space-y-6 max-h-[340px] overflow-y-auto pr-1 custom-scrollbar">
@@ -199,7 +188,6 @@
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task2" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
                             <label for="task2" class="ml-3 text-xs w-full cursor-pointer">
-
                                 <span class="block font-semibold text-zinc-200">Disconnect Spotify / YT Music Duet</span>
                                 <span class="block text-zinc-500 mt-0.5">Stop blending playlists. Remove them from any family plan managers.</span>
                             </label>
@@ -219,7 +207,6 @@
                                 <span class="block font-semibold text-zinc-200">Revoke Google Maps Real-time Sharing</span>
                                 <span class="block text-zinc-500 mt-0.5">Open Google Maps -> Location Sharing -> Delete their name immediately.</span>
                             </label>
-
                         </div>
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task4" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
@@ -239,7 +226,6 @@
                     <div class="space-y-2">
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
                             <input type="checkbox" id="task5" onchange="updateProgress()" class="mt-1 accent-rose-500 h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-rose-500 focus:ring-0 focus:ring-offset-0">
-
                             <label for="task5" class="ml-3 text-xs w-full cursor-pointer">
                                 <span class="block font-semibold text-zinc-200">Unshare Google Drive Folders</span>
                                 <span class="block text-zinc-500 mt-0.5">Check ownership status of mutual sheets, assignment folders, or media backups.</span>
@@ -259,7 +245,6 @@
                 <div class="space-y-3">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-zinc-400 flex items-center space-x-2">
                         <span>💳</span> <span>Phase 4: Financial Independence</span>
-
                     </h4>
                     <div class="space-y-2">
                         <div class="flex items-start p-3 bg-zinc-900 border border-zinc-800 rounded-xl hover:bg-zinc-900/80 transition-colors">
@@ -279,7 +264,6 @@
                 <button id="completeBtn" onclick="finishCleanup()" 
                         class="w-full py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 text-white font-bold rounded-xl hover:opacity-95 shadow-lg transition-all duration-300">
                     Generate My Freedom Card (0% Secured) 🎉
-
                 </button>
             </div>
         </div>
@@ -299,7 +283,6 @@
 
             <!-- The Viral Generated Certificate Design -->
             <div id="certificateCard" class="bg-gradient-to-b from-zinc-900 to-black border-2 border-zinc-800 rounded-2xl p-6 text-left relative overflow-hidden shadow-2xl">
-
                 <!-- Watermark Background icon -->
                 <div class="absolute -right-6 -bottom-6 text-9xl text-zinc-900/30 select-none pointer-events-none font-bold">🕊️</div>
                 
@@ -319,7 +302,6 @@
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500">Breakup Severity Mode:</span>
                         <span class="font-semibold text-zinc-300" id="certSeverity">Toxic Mode</span>
-
                     </div>
                     <div class="flex justify-between text-xs">
                         <span class="text-zinc-500">Arijit Singh Protection:</span>
@@ -339,7 +321,6 @@
             <button onclick="resetApp()" class="text-xs text-zinc-500 hover:text-zinc-400 underline block mx-auto">
                 Start Over / Reset System
             </button>
-
         </div>
 
     </main>
@@ -359,7 +340,6 @@
         window.severityMode = '';
         window.globalPercentage = 0;
         window.player = null;
-
         window.isPlaying = false;
 
         // Clean embeddable lyric track mapping nodes (High embedded audio performance availability versions)
@@ -379,7 +359,6 @@
             "Tumhara access gaya, ab sirf memories bachi hain.",
             "Password changed! Background me 'Channa Mereya' baj raha hai.",
             "Location revoke ho gayi, ab stalk karna mushkil hai.",
-
             "Google Drive cleaned. No more matching outfits archives.",
             "Splitwise settled. Paisa safe, data bhi safe!",
             "Digital break-up complete. Access denied permanently."
@@ -399,7 +378,6 @@
                         'rel': 0,
                         'origin': window.location.origin,
                         'modestbranding': 1,
-
                         'mute': 0
                     },
                     events: {
@@ -418,7 +396,6 @@
                 console.error("YT init error:", err);
             }
         };
-
 
         window.showToast = function(msg, icon) {
             if (!icon) icon = '💔';
@@ -439,7 +416,6 @@
             window.selectedType = label;
             window.severityMode = type;
             document.getElementById('certSeverity').innerText = label;
-
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = false;
@@ -459,7 +435,6 @@
         };
 
         window.goToDashboard = function() {
-
             // CRITICAL POLICY FIX: Trigger audio stream IMMEDIATELY inside synchronous click context stack
             // This captures the browser gesture context token cleanly before executing animations.
             if (window.player && typeof window.player.loadVideoById === 'function' && window.severityMode) {
@@ -479,7 +454,6 @@
             
             welcome.classList.add('opacity-0', 'translate-y-4');
             setTimeout(function() {
-
                 welcome.classList.add('hidden');
                 dash.classList.remove('hidden');
                 setTimeout(function() {
@@ -499,7 +473,6 @@
 
             if (!window.isPlaying) {
                 window.player.playVideo();
-
                 window.isPlaying = true;
                 soundwave.classList.remove('paused-bars');
                 toggleBtn.innerText = "Pause";
@@ -519,7 +492,6 @@
                 if(document.getElementById('task' + i).checked) {
                     checkedCount++;
                 }
-
             }
 
             window.globalPercentage = Math.round((checkedCount / window.totalTasks) * 100);
@@ -539,7 +511,6 @@
         window.finishCleanup = function() {
             const dash = document.getElementById('dashboardScreen');
             const success = document.getElementById('successScreen');
-
             
             document.getElementById('certId').innerText = '#AZADI-' + Math.floor(1000 + Math.random() * 9000);
             
@@ -559,7 +530,6 @@
                 dash.classList.add('hidden');
                 success.classList.remove('hidden');
                 setTimeout(function() {
-
                     success.classList.remove('opacity-0', 'translate-y-4');
                     success.classList.add('opacity-100', 'translate-y-0');
                 }, 50);
@@ -578,7 +548,6 @@
 
             window.showToast("Copied status card text!", '✅');
         };
-
 
         window.resetApp = function() {
             if (window.player && typeof window.player.pauseVideo === 'function') {
@@ -599,7 +568,6 @@
             document.getElementById('trackName').innerText = "Radio Tuning...";
             document.getElementById('soundwave').classList.add('paused-bars');
             document.getElementById('audioToggleBtn').innerText = "Play";
-
             
             const startBtn = document.getElementById('startBtn');
             startBtn.disabled = true;
@@ -619,12 +587,9 @@
         (function() {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
-
             const firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         })();
     </script>
 </body>
 </html>
-
-
